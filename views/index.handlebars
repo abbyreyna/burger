@@ -1,7 +1,7 @@
 {{!-- Setup the index.handlebars to have the template that Handlebars can render onto.
 Create a button in index.handlebars that will submit the user input into the database. --}}
 
-<div class="row">
+{{!-- <div class="row">
     <div class="col-8">
 
 
@@ -9,18 +9,64 @@ Create a button in index.handlebars that will submit the user input into the dat
 
         <ul class="list-group">
             {{#each burgers}}
-            <li class="list-group-item burger">{{this.burgers}}</li>
+            {{#unless this.devoured}}
+            <li class="list-group-item burger">{{this.burger_name}}</li>
+            {{/unless}}
             {{/each}}
         </ul>
 
-        <form action="/burgers" method="POST" class="mb-4">
-            <div class="form-group">
-                <input type="text" name="name" class="form-control">
-            </div>
-            <input type="submit" value="Submit" class="btn-primary btn-block addBurger">
-        </form>
-        <h4 class="text-center mb-3">Enter a burger you want to eat! Click the "Submit" button</h4>
-        </form>
+
+        
     </div>
 </div>
-</div>
+</div> --}}
+
+<div class="container">
+    <div class="row">
+        <!-- Column for available burgers and customer name -->
+
+        <div>
+            <img src="https://i.ibb.co/VSyRH8T/vector-realistic-fast-food-removebg.png" alt="burger!" border="0">
+        </div>
+        <div class = "change-state">
+            {{#each burgers}}
+            {{#unless this.devoured}}
+            <div class="row">
+                <div class="burgerName">
+                    <div class='burgerAvailable'>{{this.burger_name}}</div>
+                </div>
+                <div class="burgerEats">
+                    <button type="submit" class="eatburger" id="{{this.id}}">Eat me!</button>
+                    </form>
+                </div>
+            </div>
+            {{/unless}}
+            {{/each}}
+        </div> <!-- End col s8 -->
+
+        <!-- Column for burgers that are no longer available -->
+        <div>
+            {{#each burgers}}
+            {{#if this.devoured}}
+            <div class='burgerEaten'>
+                <div>
+                    {{this.burger_name}}
+                    <button type="submit" class="barfTheBurger" id="{{this.id}}">🤮</button>
+                </div>
+            </div>
+            {{/if}}
+            {{/each}}
+            <form>
+                <div class="form-group">
+                    <input type="text" id="newBurger" name="burger">
+                    <button type="submit" name="submit" class="create-form"
+                       id="addburger">Submit</button>
+                </div>
+
+            </form>
+            <h4 class="text-center mb-3">Enter a burger you want to eat! Click the "Submit" button</h4>
+            </form>
+        </div> <!-- End col s4 -->
+    </div> <!-- End row -->
+</div> <!-- End container -->
+</main>

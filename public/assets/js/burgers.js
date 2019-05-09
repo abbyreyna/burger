@@ -1,10 +1,9 @@
 $(function() {
-    $(".change-state").on("click", function(event) {
-      var id = $(this).data("id");
-      var newState = $(this).data("newstate");
+    $(".eatburger").on("click", function(event) {
+      var id = $(this).attr("id");
   
       var newHungerState = {
-        devoured: newState
+        devoured: 1
       };
   
       // Send the PUT request.
@@ -13,22 +12,23 @@ $(function() {
         data: newHungerState
       }).then(
         function() {
-          console.log("changed status to", newState);
+          console.log("burger eaten");
           // Reload the page to get the updated list
           location.reload();
-        }
-      );
+        });
     });
   
-    $(".create-form").on("submit", function(event) {
+    $("#addburger").on("click", function(event) {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
-  
+      console.log(event);
       var newBurger = {
-        burger_name: $("#ca").val().trim(),
-        devoured: $("[name=devoured]:checked").val().trim()
+        burger_name: $("#newBurger")
+          .val()
+          .trim(),
+        devoured: 0
       };
-  
+      console.log(newBurger);
       // Send the POST request.
       $.ajax("/api/burgers", {
         type: "POST",
