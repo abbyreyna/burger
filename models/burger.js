@@ -8,7 +8,7 @@ var orm = require("../config/orm.js");
 
 var burger = {
     all: function(cb) {
-      orm.all("burger_db", function(res) {
+      orm.all("burgers_db", function(res) {
         cb(res);
       });
     },
